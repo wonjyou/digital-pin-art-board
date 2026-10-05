@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digital Pin Art Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="stage" aria-label="Digital pin art board. Drag to rotate, scroll to zoom."></canvas>
+
+<aside class="panel" id="panel">
+  <header class="panel-head">
+    <h1>Menu Options</h1>
+    <button class="collapse" id="collapse" type="button" aria-expanded="true" aria-controls="controls" aria-label="Minimize controls"><span></span></button>
+  </header>
+
+  <div class="panel-body" id="controls">
+    <div class="panel-inner">
+      <fieldset class="sources">
+        <legend>Source</legend>
+        <button type="button" data-source="demo" aria-pressed="true" aria-label="Demo animation" data-tip="Demo animation"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="9" r="4.5"/><circle cx="16" cy="15.5" r="3.5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></button>
+        <button type="button" data-source="camera" aria-pressed="false" aria-label="Camera" data-tip="Camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2.5h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
+        <button type="button" data-source="image" aria-pressed="false" aria-label="Image file" data-tip="Image file"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9.5" r="1.5"/><path d="M4.5 17l4.5-4 3.5 3 2.5-2 4.5 4"/></svg></button>
+        <button type="button" data-source="video" aria-pressed="false" aria-label="Video file" data-tip="Video file"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4.5-2.500z"/></svg></button>
+        <input type="file" id="file" accept="image/*,video/*" hidden>
+      </fieldset>
+      <p class="status" id="status" role="status" hidden></p>
+
+      <label class="slider">
+        <span class="row"><span>Pins</span><output id="pinsOut"></output></span>
+        <input type="range" id="pins" min="0" max="1000" value="642">
+      </label>
+
+      <label class="slider">
+        <span class="row"><span>Pin travel</span><output id="depthOut"></output></span>
+        <input type="range" id="depth" min="0" max="100" value="75">
+      </label>
+
+      <label class="slider">
+        <span class="row"><span>Response</span><output id="speedOut"></output></span>
+        <input type="range" id="speed" min="0" max="100" value="60">
+      </label>
+
+      <label class="switch"><input type="checkbox" id="mirror"><span>Mirror the picture</span></label>
+      <label class="switch"><input type="checkbox" id="invert"><span>Raise dark areas instead</span></label>
+      <label class="switch"><input type="checkbox" id="tint"><span>Tint pins with the picture's colors</span></label>
+
+      <button type="button" class="reset" id="reset">Reset view</button>
+    </div>
+  </div>
+</aside>
+
+<p class="hint" id="hint">Drag to rotate. Scroll or pinch to zoom.</p>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
